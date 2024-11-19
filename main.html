@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p class="pElement">Emin Başbayan</p>
+    <button id="myButton">İsmi Güncelle</button>
+
+    <script>
+      const myBtn = document.getElementById('myButton');
+      console.log(myBtn);
+
+      myBtn.addEventListener('click', () => {
+        document.querySelector('.pElement').innerHTML = 'Ahmet Demir';
+      });
+    </script>
+  </body>
+</html>
