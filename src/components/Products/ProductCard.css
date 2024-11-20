@@ -8,9 +8,10 @@
   object-fit: contain;
 }
 
-.product-info {
+.product-bottom {
   display: flex;
   flex-direction: column;
+  row-gap: 6px;
   padding: 16px;
 }
 
