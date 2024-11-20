@@ -1,3 +1,5 @@
+import './ProductCard.css';
+
 function ProductCard() {
   return (
     <div className="product-card">
@@ -7,8 +9,10 @@ function ProductCard() {
           alt="product image"
         />
       </div>
-      <b className="product-title">Tisört</b>
-      <span className="product-price">100₺</span>
+      <div className="product-info">
+        <b className="product-title">Tisört</b>
+        <span className="product-price">100₺</span>
+      </div>
     </div>
   );
 }
