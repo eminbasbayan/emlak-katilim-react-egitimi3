@@ -4,21 +4,15 @@ const productCardCss = {
   borderColor: 'red',
 };
 
-function ProductCard() {
-  const image =
-    'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg';
-
-  const title = 'Tisört';
-  const price = '100';
-  
+function ProductCard(props) {
   return (
     <div className="product-card" style={productCardCss}>
       <div className="product-image">
-        <img src={image} alt="product image" />
+        <img src={props.image} alt="product image" />
       </div>
       <div className="product-info">
-        <b className="product-title">{title}</b>
-        <span className="product-price">{price}₺</span>
+        <b className="product-title">{props.title}</b>
+        <span className="product-price">{props.price}₺</span>
       </div>
     </div>
   );
