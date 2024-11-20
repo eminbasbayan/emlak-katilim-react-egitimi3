@@ -10,7 +10,7 @@ function ProductCard(props) {
       <div className="product-bottom">
         <b className="product-title">{props.title}</b>
         <span className="product-price">{props.price}₺</span>
-        <Button color="primary" size="xl" classNames="mt-2">
+        <Button size="xl" classNames="mt-2">
           Sepete Ekle
         </Button>
         <Button color="danger" size="lg" classNames="mb-1">
