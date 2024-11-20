@@ -12,21 +12,16 @@ function Products() {
           columnGap: '20px',
         }}
       >
-        <ProductCard
-          image={productsData[0].image}
-          title={productsData[0].title}
-          price={productsData[0].price}
-        />
-        <ProductCard
-          image={productsData[1].image}
-          title={productsData[1].title}
-          price={productsData[1].price}
-        />
-        <ProductCard
-          image={productsData[2].image}
-          title={productsData[2].title}
-          price={productsData[2].price}
-        />
+        {productsData.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              image={product.image}
+              title={product.title}
+              price={product.price}
+            />
+          );
+        })}
       </div>
     </div>
   );
