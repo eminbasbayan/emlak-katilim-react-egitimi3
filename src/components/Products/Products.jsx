@@ -1,17 +1,12 @@
 import ProductCard from './ProductCard';
-import { productsData } from './productsData';
+import { productsData } from '../../productsData';
+import './Products.css';
 
 function Products() {
   return (
     <div className="products">
       <h2>Products</h2>
-      <div
-        className="products-wrapper"
-        style={{
-          display: 'flex',
-          columnGap: '20px',
-        }}
-      >
+      <div className="products-wrapper">
         {productsData.map((product) => {
           return (
             <ProductCard
