@@ -1,12 +1,10 @@
-import { useState } from 'react';
+import ProductCard from "./ProductCard";
 
 function App() {
-  const [state, setState] = useState('Emin Başbayan');
 
   return (
-    <div className="wrapper">
-      <p>{state}</p>
-      <button onClick={() => setState('Ahmet Demir')}>İsmi Güncelle</button>
+    <div className="app">
+     <ProductCard></ProductCard>
     </div>
   );
 }
