@@ -1,12 +1,7 @@
 import ProductCard from './ProductCard';
+import { productsData } from './productsData';
 
 function Products() {
-  const image =
-    'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg';
-
-  const title = 'Tisört';
-  const price = '100';
-
   return (
     <div className="products">
       <h2>Products</h2>
@@ -17,11 +12,20 @@ function Products() {
           columnGap: '20px',
         }}
       >
-        <ProductCard image={image} title={title} price={price} />
         <ProductCard
-          image="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
-          title="Mens Cotton Jacket"
-          price={55.99}
+          image={productsData[0].image}
+          title={productsData[0].title}
+          price={productsData[0].price}
+        />
+        <ProductCard
+          image={productsData[1].image}
+          title={productsData[1].title}
+          price={productsData[1].price}
+        />
+        <ProductCard
+          image={productsData[2].image}
+          title={productsData[2].title}
+          price={productsData[2].price}
         />
       </div>
     </div>

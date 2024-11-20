@@ -1,12 +1,8 @@
 import './ProductCard.css';
 
-const productCardCss = {
-  borderColor: 'red',
-};
-
 function ProductCard(props) {
   return (
-    <div className="product-card" style={productCardCss}>
+    <div className="product-card">
       <div className="product-image">
         <img src={props.image} alt="product image" />
       </div>
