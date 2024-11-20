@@ -22,3 +22,10 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
+.product-desc {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
