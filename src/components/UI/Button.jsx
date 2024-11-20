@@ -1,10 +1,20 @@
 import PropTypes from 'prop-types';
 import './Button.css';
 
-function Button({ color = 'primary', size = 'lg', classNames, children }) {
+function Button({
+  color = 'primary',
+  size = 'lg',
+  classNames,
+  onClick,
+  children,
+}) {
   const componentClassNames = `btn btn-${color} btn-${size} ${classNames}`;
 
-  return <button className={componentClassNames}>{children}</button>;
+  return (
+    <button className={componentClassNames} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
 
 Button.propTypes = {

@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import Button from '../UI/Button';
 import './ProductCard.css';
 
 function ProductCard(props) {
+ 
+
+  function handleClick() {
+    props.setTitle('New Title');
+  }
+
   return (
     <div className="product-card">
       <div className="product-image">
@@ -11,7 +18,7 @@ function ProductCard(props) {
         <b className="product-title">{props.title}</b>
         <span className="product-desc">{props.description}</span>
         <span className="product-price">{props.price}₺</span>
-        <Button>Sepete Ekle</Button>
+        <Button onClick={handleClick}>Title Change</Button>
       </div>
     </div>
   );
