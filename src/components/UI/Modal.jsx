@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import Button from './Button';
 
 const Modal = ({ children, setIsModalOpen, title, ok }) => {
+  useEffect(() => {
+    console.log("component DOM'a yüklendiğinde çalışır.");
+
+    // clean-up function
+    return ()=> {
+      console.log("component DOM'dan kaldırıldığında çalışır.");
+    }
+  }, []);
+
   function handleCloseModal() {
     setIsModalOpen(false);
   }
