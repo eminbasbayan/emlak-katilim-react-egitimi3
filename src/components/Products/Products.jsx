@@ -15,10 +15,16 @@ function Products() {
     setProducts([product, ...products]);
   }
 
-  function fetchProducts() {
-    fetch('https://fakestoreapi.com/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+  async function fetchProducts() {
+    try {
+      const res = await fetch('https://fakestoreapi.com/products');
+      if (res.status === 200) {
+        const data = await res.json();
+        setProducts(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
