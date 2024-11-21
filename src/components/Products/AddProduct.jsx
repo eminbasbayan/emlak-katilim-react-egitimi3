@@ -62,7 +62,7 @@ function AddProduct({ addNewProduct, setIsModalOpen }) {
     );
 
     if (!isFormValid) {
-      setIsModalOpen(true);
+      setIsModalOpen();
       return;
     }
 

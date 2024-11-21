@@ -23,7 +23,7 @@ const Modal = ({ children, setIsModalOpen, title, ok }) => {
   }, []);
 
   function handleCloseModal() {
-    setIsModalOpen(false);
+    setIsModalOpen();
   }
 
   return createPortal(
