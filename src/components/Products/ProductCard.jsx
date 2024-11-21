@@ -10,11 +10,14 @@ function ProductCard(props) {
       <div className="product-bottom">
         <b className="product-title">{props.title}</b>
         <span className="product-desc">{props.description}</span>
-        <div className='flex justify-between'>
+        <div className="flex justify-between">
           <span className="product-price">{props.price}₺</span>
           <b className="product-category text-blue-600">{props.category}</b>
         </div>
         <Button>Sepete Ekle</Button>
+        <Button color="danger" onClick={() => props.onDeleteProduct(props.id)}>
+          Ürünü Sil
+        </Button>
       </div>
     </div>
   );

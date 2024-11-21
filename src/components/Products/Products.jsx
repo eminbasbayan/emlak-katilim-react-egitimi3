@@ -16,6 +16,13 @@ function Products() {
     setProducts([product, ...products]);
   }
 
+  function deleteProduct(productId) {
+    const filteredProducts = products.filter(
+      (product) => product.id !== productId
+    );
+    setProducts(filteredProducts);
+  }
+
   async function fetchProducts() {
     setIsLoading(true);
     try {
@@ -47,7 +54,11 @@ function Products() {
       <div className="products-wrapper">
         <Loading isLoading={isLoading} />
         {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard
+            key={product.id}
+            {...product}
+            onDeleteProduct={deleteProduct}
+          />
         ))}
       </div>
       {isModalOpen && (
