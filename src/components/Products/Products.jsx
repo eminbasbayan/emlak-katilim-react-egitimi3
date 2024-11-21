@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ProductCard from './ProductCard';
 import { productsData } from '../../productsData';
-import './Products.css';
 import AddProduct from './AddProduct';
+import './Products.css';
 
 function Products() {
   const [title, setTitle] = useState("Title");

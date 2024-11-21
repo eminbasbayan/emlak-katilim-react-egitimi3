@@ -8,6 +8,7 @@ function AddProduct() {
     description: '',
     price: '',
     image: '',
+    category: '',
   });
 
   function handleInputChange({ target: { value, name } }) {
@@ -18,43 +19,53 @@ function AddProduct() {
     <div className="add-new-product">
       <h2 className="text-2xl font-bold mb-1">Yeni Ürün Ekle</h2>
       <form className="add-product-form">
-        {product.title}
         <label>
           Title:
           <input
             type="text"
             name="title"
             onChange={handleInputChange}
+            placeholder="Ürün ismi giriniz."
             required
           />
         </label>
-        {product.description}
         <label>
           Description:
           <input
             type="text"
             name="description"
             onChange={handleInputChange}
+            placeholder="Ürün açıklaması giriniz."
             required
           />
         </label>
-        {product.price}
         <label>
           Price:
           <input
             type="number"
             name="price"
             onChange={handleInputChange}
+            placeholder="Ürün fiyatı giriniz."
             required
           />
         </label>
-        {product.image}
         <label>
           Image URL:
           <input
             type="text"
             name="image"
             onChange={handleInputChange}
+            placeholder="Ürün görseli giriniz."
+            required
+          />
+        </label>
+        <label>
+          Category:
+          <input
+            type="text"
+            name="category"
+            onChange={handleInputChange}
+            placeholder="Ürün kategorisi giriniz."
             required
           />
         </label>
