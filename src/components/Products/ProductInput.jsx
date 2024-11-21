@@ -16,7 +16,6 @@ function ProductInput({
         onChange={onInputChange}
         placeholder={placeholder}
         value={value}
-        required={required}
       />
     </label>
   );

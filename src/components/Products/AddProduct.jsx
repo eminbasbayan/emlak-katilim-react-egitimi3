@@ -54,8 +54,21 @@ function AddProduct({ addNewProduct }) {
     setProduct({ ...product, [name]: value });
   }
 
+  console.log('keys', Object.keys(product));
+  console.log('values', Object.values(product));
+
   function handleSubmit(event) {
     event.preventDefault();
+
+    const isFormValid = Object.values(product).every(
+      (value) => value.trim() !== ''
+    );
+
+    if (!isFormValid) {
+      console.error('Inputlar boş geçilemez!');
+      return;
+    }
+
     const newProduct = { id: Math.random(), ...product };
     addNewProduct(newProduct);
 
