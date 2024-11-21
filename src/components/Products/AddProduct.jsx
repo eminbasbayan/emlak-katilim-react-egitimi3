@@ -39,7 +39,7 @@ const productInputs = [
   },
 ];
 
-function AddProduct() {
+function AddProduct({ productsData, addNewProduct }) {
   const [product, setProduct] = useState({
     title: '',
     description: '',
@@ -54,7 +54,8 @@ function AddProduct() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(product);
+    const newProduct = { id: Math.random(), ...product };
+    addNewProduct(newProduct);
   }
 
   return (
