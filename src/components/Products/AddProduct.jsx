@@ -52,10 +52,15 @@ function AddProduct() {
     setProduct({ ...product, [name]: value });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(product);
+  }
+
   return (
     <div className="add-new-product">
       <h2 className="text-2xl font-bold mb-1">Yeni Ürün Ekle</h2>
-      <form className="add-product-form">
+      <form className="add-product-form" onSubmit={handleSubmit}>
         {productInputs.map((input, index) => (
           <ProductInput
             key={index}
