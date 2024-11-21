@@ -56,6 +56,14 @@ function AddProduct({ productsData, addNewProduct }) {
     event.preventDefault();
     const newProduct = { id: Math.random(), ...product };
     addNewProduct(newProduct);
+
+    setProduct({
+      title: '',
+      description: '',
+      price: '',
+      image: '',
+      category: '',
+    });
   }
 
   return (
@@ -66,6 +74,7 @@ function AddProduct({ productsData, addNewProduct }) {
           <ProductInput
             key={index}
             {...input}
+            value={product[input.name]}
             onInputChange={handleInputChange}
           />
         ))}

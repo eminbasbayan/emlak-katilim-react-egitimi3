@@ -4,6 +4,7 @@ function ProductInput({
   name,
   placeholder,
   label,
+  value,
   required = false,
 }) {
   return (
@@ -14,6 +15,7 @@ function ProductInput({
         name={name}
         onChange={onInputChange}
         placeholder={placeholder}
+        value={value}
         required={required}
       />
     </label>
