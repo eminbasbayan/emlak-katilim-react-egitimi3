@@ -8,7 +8,11 @@ const Modal = ({ children, setIsModalOpen, title, ok }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg w-[600px] p-6">
+      <div
+        className="w-full h-full absolute  top-0 left-0"
+        onClick={handleCloseModal}
+      ></div>
+      <div className="bg-white rounded-lg w-[600px] p-6 relative z-40">
         {/* Modal başlık */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">{title}</h2>
