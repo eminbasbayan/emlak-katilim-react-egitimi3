@@ -1,21 +1,24 @@
 import { useState } from 'react';
 
 import AddProduct from './AddProduct';
+import Button from '../UI/Button';
 import ProductCard from './ProductCard';
+import Modal from '../UI/Modal';
+import Loading from '../UI/Loading';
 
 import './Products.css';
-import Modal from '../UI/Modal';
-import Button from '../UI/Button';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function addNewProduct(product) {
     setProducts([product, ...products]);
   }
 
   async function fetchProducts() {
+    setIsLoading(true);
     try {
       const res = await fetch('https://fakestoreapi.com/products');
       if (res.status === 200) {
@@ -24,6 +27,8 @@ function Products() {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -38,6 +43,7 @@ function Products() {
         Fetch Products
       </Button>
       <div className="products-wrapper">
+        <Loading isLoading={isLoading} />
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}
