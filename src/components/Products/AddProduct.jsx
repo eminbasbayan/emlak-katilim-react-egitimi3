@@ -39,14 +39,16 @@ const productInputs = [
   },
 ];
 
-function AddProduct({ productsData, addNewProduct }) {
-  const [product, setProduct] = useState({
-    title: '',
-    description: '',
-    price: '',
-    image: '',
-    category: '',
-  });
+const initialValues = {
+  title: '',
+  description: '',
+  price: '',
+  image: '',
+  category: '',
+};
+
+function AddProduct({ addNewProduct }) {
+  const [product, setProduct] = useState(initialValues);
 
   function handleInputChange({ target: { value, name } }) {
     setProduct({ ...product, [name]: value });
@@ -57,13 +59,7 @@ function AddProduct({ productsData, addNewProduct }) {
     const newProduct = { id: Math.random(), ...product };
     addNewProduct(newProduct);
 
-    setProduct({
-      title: '',
-      description: '',
-      price: '',
-      image: '',
-      category: '',
-    });
+    setProduct(initialValues);
   }
 
   return (
