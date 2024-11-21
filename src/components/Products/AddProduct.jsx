@@ -54,9 +54,6 @@ function AddProduct({ addNewProduct }) {
     setProduct({ ...product, [name]: value });
   }
 
-  console.log('keys', Object.keys(product));
-  console.log('values', Object.values(product));
-
   function handleSubmit(event) {
     event.preventDefault();
 

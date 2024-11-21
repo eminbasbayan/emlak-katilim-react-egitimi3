@@ -6,6 +6,7 @@ import ProductCard from './ProductCard';
 import { productsData } from '../../productsData';
 
 import './Products.css';
+import Modal from '../UI/Modal';
 
 function Products() {
   const [products, setProducts] = useState(productsData);
@@ -23,6 +24,7 @@ function Products() {
           <ProductCard key={product.id} {...product} />
         ))}
       </div>
+      <Modal />
     </div>
   );
 }
