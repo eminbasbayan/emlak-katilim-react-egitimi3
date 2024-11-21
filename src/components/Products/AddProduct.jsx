@@ -1,6 +1,43 @@
-import './AddProduct.css';
-import Button from '../UI/Button';
 import { useState } from 'react';
+
+import Button from '../UI/Button';
+import ProductInput from './ProductInput';
+
+import './AddProduct.css';
+
+const productInputs = [
+  {
+    label: 'Title',
+    name: 'title',
+    placeholder: 'Ürün ismi giriniz.',
+    required: true,
+  },
+  {
+    label: 'Description',
+    name: 'description',
+    placeholder: 'Ürün açıklaması giriniz.',
+    required: true,
+  },
+  {
+    label: 'Price',
+    name: 'price',
+    placeholder: 'Ürün fiyatı giriniz.',
+    type: 'number',
+    required: true,
+  },
+  {
+    label: 'Image URL',
+    name: 'image',
+    placeholder: 'Ürün görseli giriniz.',
+    required: true,
+  },
+  {
+    label: 'Category',
+    name: 'category',
+    placeholder: 'Ürün kategorisi giriniz.',
+    required: true,
+  },
+];
 
 function AddProduct() {
   const [product, setProduct] = useState({
@@ -19,56 +56,14 @@ function AddProduct() {
     <div className="add-new-product">
       <h2 className="text-2xl font-bold mb-1">Yeni Ürün Ekle</h2>
       <form className="add-product-form">
-        <label>
-          Title:
-          <input
-            type="text"
-            name="title"
-            onChange={handleInputChange}
-            placeholder="Ürün ismi giriniz."
-            required
+        {productInputs.map((input, index) => (
+          <ProductInput
+            key={index}
+            {...input}
+            onInputChange={handleInputChange}
           />
-        </label>
-        <label>
-          Description:
-          <input
-            type="text"
-            name="description"
-            onChange={handleInputChange}
-            placeholder="Ürün açıklaması giriniz."
-            required
-          />
-        </label>
-        <label>
-          Price:
-          <input
-            type="number"
-            name="price"
-            onChange={handleInputChange}
-            placeholder="Ürün fiyatı giriniz."
-            required
-          />
-        </label>
-        <label>
-          Image URL:
-          <input
-            type="text"
-            name="image"
-            onChange={handleInputChange}
-            placeholder="Ürün görseli giriniz."
-            required
-          />
-        </label>
-        <label>
-          Category:
-          <input
-            type="text"
-            name="category"
-            onChange={handleInputChange}
-            placeholder="Ürün kategorisi giriniz."
-            required
-          />
-        </label>
+        ))}
+
         <Button color={'success'}>Yeni Ürün Ekle</Button>
       </form>
     </div>
