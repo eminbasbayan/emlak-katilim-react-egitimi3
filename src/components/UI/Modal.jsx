@@ -1,4 +1,6 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
+
 import Button from './Button';
 
 const Modal = ({ children, setIsModalOpen, title, ok }) => {
@@ -6,7 +8,7 @@ const Modal = ({ children, setIsModalOpen, title, ok }) => {
     setIsModalOpen(false);
   }
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div
         className="w-full h-full absolute  top-0 left-0"
@@ -38,7 +40,8 @@ const Modal = ({ children, setIsModalOpen, title, ok }) => {
           <Button onClick={handleCloseModal}>Kapat</Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('modal')
   );
 };
 
