@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import AddProduct from './AddProduct';
-import Button from '../UI/Button';
 import ProductCard from './ProductCard';
 import Modal from '../UI/Modal';
 import Loading from '../UI/Loading';
@@ -32,6 +31,12 @@ function Products() {
     }
   }
 
+  useEffect(() => {
+    if (isModalOpen === false) {
+      fetchProducts();
+    }
+  }, [isModalOpen]);
+
   return (
     <div className="products">
       <h2 className="text-3xl font-bold mb-4">Products</h2>
@@ -39,9 +44,6 @@ function Products() {
         addNewProduct={addNewProduct}
         setIsModalOpen={setIsModalOpen}
       />
-      <Button classNames={'mb-4'} onClick={fetchProducts}>
-        Fetch Products
-      </Button>
       <div className="products-wrapper">
         <Loading isLoading={isLoading} />
         {products.map((product) => (
