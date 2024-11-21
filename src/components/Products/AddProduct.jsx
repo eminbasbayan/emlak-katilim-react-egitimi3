@@ -47,7 +47,7 @@ const initialValues = {
   category: '',
 };
 
-function AddProduct({ addNewProduct }) {
+function AddProduct({ addNewProduct, setIsModalOpen }) {
   const [product, setProduct] = useState(initialValues);
 
   function handleInputChange({ target: { value, name } }) {
@@ -62,7 +62,7 @@ function AddProduct({ addNewProduct }) {
     );
 
     if (!isFormValid) {
-      console.error('Inputlar boş geçilemez!');
+      setIsModalOpen(true);
       return;
     }
 
