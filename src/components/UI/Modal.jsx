@@ -1,16 +1,25 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import Button from './Button';
 
 const Modal = ({ children, setIsModalOpen, title, ok }) => {
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
-    console.log("component DOM'a yüklendiğinde çalışır.");
+    console.log("modal DOM'a yüklendi.");
+    let i = 0;
+    const id = setInterval(() => {
+      i += 1;
+      setCount(i);
+      console.log(i);
+    }, 1000);
 
     // clean-up function
-    return ()=> {
-      console.log("component DOM'dan kaldırıldığında çalışır.");
-    }
+    return () => {
+      console.log("modal DOM'dan kaldırıldı.");
+      clearInterval(id);
+    };
   }, []);
 
   function handleCloseModal() {
@@ -26,8 +35,8 @@ const Modal = ({ children, setIsModalOpen, title, ok }) => {
       <div className="bg-white rounded-lg w-[600px] p-6 relative z-40">
         {/* Modal başlık */}
         <div className="flex justify-between items-center mb-4">
+          {count}
           <h2 className="text-xl font-semibold">{title}</h2>
-
           <button
             onClick={handleCloseModal}
             className="text-gray-500 hover:text-gray-800 focus:outline-none"
