@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { productId } = useParams();
 
   useEffect(() => {
@@ -18,9 +19,34 @@ const ProductDetailPage = () => {
       } catch (err) {
         console.log(err);
       }
+      setLoading(false);
     }
     fecthProduct();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen w-screen bg-gray-100 flex items-center justify-center p-4">
+        <div className="max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="md:flex">
+            {/* Skeleton Image */}
+            <div className="md:w-1/2 p-4">
+              <div className="w-full h-64 bg-gray-300 animate-pulse rounded-lg"></div>
+            </div>
+            {/* Skeleton Details */}
+            <div className="md:w-1/2 p-6 space-y-4">
+              <div className="h-6 bg-gray-300 animate-pulse rounded w-3/4"></div>
+              <div className="h-4 bg-gray-300 animate-pulse rounded w-1/2"></div>
+              <div className="h-4 bg-gray-300 animate-pulse rounded w-full"></div>
+              <div className="h-4 bg-gray-300 animate-pulse rounded w-5/6"></div>
+              <div className="h-6 bg-gray-300 animate-pulse rounded w-1/3"></div>
+              <div className="h-10 bg-blue-300 animate-pulse rounded w-1/2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) return;
 
