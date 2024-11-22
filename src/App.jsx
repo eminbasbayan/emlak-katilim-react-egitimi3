@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import Header from './components/Layout/Header';
 import Products from './components/Products/Products';
 import { ThemeContext } from './context/ThemeContext';
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -13,8 +15,7 @@ function App() {
   return (
     <div className="app" style={appStyle}>
       <div className="container mx-auto pb-8">
-        <Header />
-        <Products />
+        <ProductsPage />
       </div>
     </div>
   );

@@ -64,11 +64,11 @@ function Products() {
 
   return (
     <div className="products">
-      <h2 className="text-3xl font-bold mb-4">Products</h2>
       <AddProduct
         addNewProduct={addNewProduct}
         setIsModalOpen={() => dispatch({ type: 'SHOW_MODAL' })}
       />
+      <h2 className="text-3xl font-bold mb-4">Products</h2>
       <div className="products-wrapper">
         <Loading isLoading={state.isLoading} />
         {state.products.map((product) => (
