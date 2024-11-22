@@ -13,6 +13,7 @@ import MainLayout from './layouts/MainLayout';
 import 'react-toastify/dist/ReactToastify.css';
 import Error404 from './pages/Error404';
 import ProductDetailPage from './pages/ProductDetailPage';
+import UsersPage from './pages/UsersPage';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -45,6 +46,21 @@ function App() {
         {
           path: '/product-detail/:productId',
           element: <ProductDetailPage />,
+        },
+        {
+          path: '/users',
+          element: <UsersPage />,
+          loader: async () => {
+            try {
+              const res = await fetch(
+                'https://fakestoreapi.com/products'
+              );
+              const data = await res.json();
+              return data;
+            } catch (err) {
+              console.log(err);
+            }
+          },
         },
       ],
     },

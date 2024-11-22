@@ -131,6 +131,18 @@ const Header = () => {
                   Contact
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to={'/users'}
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 ${
+                      isActive && '!text-white'
+                    } rounded text-gray-400 bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0`
+                  }
+                >
+                  Users
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
