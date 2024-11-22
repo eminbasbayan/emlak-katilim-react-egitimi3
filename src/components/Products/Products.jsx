@@ -30,8 +30,9 @@ const initialState = {
   isLoading: true,
 };
 
-function Products() {
+function Products({ setCartItems }) {
   const [state, dispatch] = useReducer(productReducer, initialState);
+  console.log('products çalıştı!');
 
   function addNewProduct(newProduct) {
     dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
@@ -75,6 +76,7 @@ function Products() {
             key={product.id}
             {...product}
             onDeleteProduct={deleteProduct}
+            setCartItems={setCartItems}
           />
         ))}
       </div>
