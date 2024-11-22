@@ -1,11 +1,22 @@
-import React from 'react';
+import { useState } from 'react';
 import { CartContext } from './CartContext';
 
 const CartProvider = ({ children }) => {
-  const fullName = 'Emin Başbayan';
+  const [cartItems, setCartItems] = useState([]);
+
+  function addToCart(productItem) {
+    setCartItems((cartItems) => [productItem, ...cartItems]);
+  }
 
   return (
-    <CartContext.Provider value={fullName}>{children}</CartContext.Provider>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        addToCart,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
   );
 };
 

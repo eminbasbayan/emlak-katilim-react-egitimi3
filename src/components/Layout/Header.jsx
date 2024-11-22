@@ -1,5 +1,9 @@
-const Header = ({ cartItems }) => {
-    console.log('header çalıştı!');
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
+
+const Header = () => {
+  const { cartItems } = useContext(CartContext);
+  console.log('header çalıştı!');
   return (
     <header className="mb-10 sticky top-0">
       <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-800">

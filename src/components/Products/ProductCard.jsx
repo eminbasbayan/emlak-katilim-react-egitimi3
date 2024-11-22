@@ -1,12 +1,12 @@
+import { useContext } from 'react';
 import Button from '../UI/Button';
 import './ProductCard.css';
+import { CartContext } from '../../context/CartContext';
 
 function ProductCard(props) {
-  const { onDeleteProduct, setCartItems, ...productItem } = props;
+  const { addToCart } = useContext(CartContext);
+  const { onDeleteProduct, ...productItem } = props;
   console.log('ProductCard çalıştı!');
-  function addToCart() {
-    setCartItems((cartItems) => [productItem, ...cartItems]);
-  }
 
   return (
     <div className="product-card">
@@ -22,7 +22,7 @@ function ProductCard(props) {
             {productItem.category}
           </b>
         </div>
-        <Button onClick={addToCart}>Sepete Ekle</Button>
+        <Button onClick={()=> addToCart(productItem)}>Sepete Ekle</Button>
         <Button color="danger" onClick={() => onDeleteProduct(props.id)}>
           Ürünü Sil
         </Button>
