@@ -4,9 +4,26 @@ import { toast } from 'react-toastify';
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  console.log(cartItems);
 
   function addToCart(productItem) {
-    setCartItems((cartItems) => [productItem, ...cartItems]);
+    const findProduct = cartItems.find((item) => item.id === productItem.id);
+
+    if (findProduct) {
+      const newCartItems = cartItems.map((item) => {
+        if (item.id === productItem.id) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }
+        return item;
+      });
+      setCartItems(newCartItems);
+    } else {
+      setCartItems((cartItems) => [productItem, ...cartItems]);
+    }
+
     toast('Ürün sepete eklendi!', {
       autoClose: 1000,
       type: 'success',

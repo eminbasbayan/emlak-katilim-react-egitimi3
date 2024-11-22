@@ -30,7 +30,9 @@ function ProductCard(props) {
           </b>
         </div>
         {!cart && (
-          <Button onClick={() => addToCart(productItem)}>Sepete Ekle</Button>
+          <Button onClick={() => addToCart({ ...productItem, quantity: 1 })}>
+            Sepete Ekle
+          </Button>
         )}
         {
           <Button color="danger" onClick={deleteProduct}>
