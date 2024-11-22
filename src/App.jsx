@@ -11,6 +11,7 @@ import ContactPage from './pages/ContactPage';
 import MainLayout from './layouts/MainLayout';
 
 import 'react-toastify/dist/ReactToastify.css';
+import Error404 from './pages/Error404';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -18,6 +19,7 @@ function App() {
     {
       path: '/',
       element: <MainLayout />,
+      errorElement: <Error404 />,
       children: [
         {
           path: '/',
