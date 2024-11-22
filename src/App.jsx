@@ -5,6 +5,7 @@ import { ThemeContext } from './context/ThemeContext';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import Header from './components/Layout/Header';
+import CartPage from './pages/CartPage';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -16,6 +17,10 @@ function App() {
     {
       path: '/products',
       element: <ProductsPage />,
+    },
+    {
+      path: '/cart',
+      element: <CartPage />,
     },
   ]);
 
