@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import { ThemeContext } from './context/ThemeContext';
 import HomePage from './pages/HomePage';
@@ -8,6 +9,8 @@ import CartPage from './pages/CartPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import MainLayout from './layouts/MainLayout';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -49,6 +52,7 @@ function App() {
   return (
     <div className="app" style={appStyle}>
       <div className="container mx-auto pb-8">
+        <ToastContainer />
         <RouterProvider router={router} />
       </div>
     </div>
