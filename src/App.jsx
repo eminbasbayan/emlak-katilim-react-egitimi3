@@ -7,29 +7,36 @@ import ProductsPage from './pages/ProductsPage';
 import CartPage from './pages/CartPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   const { theme } = useContext(ThemeContext);
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <HomePage />,
-    },
-    {
-      path: '/products',
-      element: <ProductsPage />,
-    },
-    {
-      path: '/cart',
-      element: <CartPage />,
-    },
-    {
-      path: '/about',
-      element: <AboutPage />,
-    },
-    {
-      path: '/contact',
-      element: <ContactPage />,
+      element: <MainLayout />,
+      children: [
+        {
+          path: '/',
+          element: <HomePage />,
+        },
+        {
+          path: '/products',
+          element: <ProductsPage />,
+        },
+        {
+          path: '/cart',
+          element: <CartPage />,
+        },
+        {
+          path: '/about',
+          element: <AboutPage />,
+        },
+        {
+          path: '/contact',
+          element: <ContactPage />,
+        },
+      ],
     },
   ]);
 
