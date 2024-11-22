@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { ThemeContext } from '../../context/ThemeContext';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const { cartItems } = useContext(CartContext);
@@ -83,23 +83,29 @@ const Header = () => {
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
               <li>
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
+                <NavLink
+                  to={'/'}
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 ${
+                      isActive && '!text-white'
+                    } rounded text-gray-400 bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0`
+                  }
                   aria-current="page"
-                  onClick={(e) => handleNavigate(e, '/')}
                 >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-                  onClick={(e) => handleNavigate(e, '/products')}
+                <NavLink
+                  to={'/products'}
+                  className={({ isActive }) =>
+                    `block py-2 pr-4 pl-3 ${
+                      isActive && '!text-white'
+                    } rounded text-gray-400 bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0`
+                  }
                 >
                   Products
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
