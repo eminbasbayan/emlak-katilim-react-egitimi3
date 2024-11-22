@@ -4,8 +4,16 @@ import './ProductCard.css';
 import { CartContext } from '../../context/CartContext';
 
 function ProductCard(props) {
-  const { addToCart } = useContext(CartContext);
-  const { onDeleteProduct, ...productItem } = props;
+  const { addToCart, deleteFromCart } = useContext(CartContext);
+  const { onDeleteProduct, cart, ...productItem } = props;
+
+  function deleteProduct() {
+    if (!cart) {
+      onDeleteProduct(props.id);
+    } else {
+      deleteFromCart(props.id);
+    }
+  }
 
   return (
     <div className="product-card">
@@ -21,10 +29,14 @@ function ProductCard(props) {
             {productItem.category}
           </b>
         </div>
-        <Button onClick={()=> addToCart(productItem)}>Sepete Ekle</Button>
-        <Button color="danger" onClick={() => onDeleteProduct(props.id)}>
-          Ürünü Sil
-        </Button>
+        {!cart && (
+          <Button onClick={() => addToCart(productItem)}>Sepete Ekle</Button>
+        )}
+        {
+          <Button color="danger" onClick={deleteProduct}>
+            {cart ? 'Sepetten Sil' : 'Ürünü Sil'}
+          </Button>
+        }
       </div>
     </div>
   );
