@@ -6,7 +6,6 @@ import { CartContext } from '../../context/CartContext';
 function ProductCard(props) {
   const { addToCart } = useContext(CartContext);
   const { onDeleteProduct, ...productItem } = props;
-  console.log('ProductCard çalıştı!');
 
   return (
     <div className="product-card">

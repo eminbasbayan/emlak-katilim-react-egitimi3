@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
-import Header from './components/Layout/Header';
 import CartPage from './pages/CartPage';
 
 function App() {
@@ -32,7 +31,6 @@ function App() {
 
   return (
     <div className="app" style={appStyle}>
-      <Header />
       <div className="container mx-auto pb-8">
         <RouterProvider router={router} />
       </div>

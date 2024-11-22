@@ -32,7 +32,6 @@ const initialState = {
 
 function Products() {
   const [state, dispatch] = useReducer(productReducer, initialState);
-  console.log('products çalıştı!');
 
   function addNewProduct(newProduct) {
     dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
@@ -42,7 +41,6 @@ function Products() {
     const filteredProducts = state.products.filter(
       (product) => product.id !== productId
     );
-    console.log(filteredProducts);
     dispatch({ type: 'DELETE_PRODUCT', payload: filteredProducts });
   }
 
