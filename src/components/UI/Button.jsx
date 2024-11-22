@@ -7,11 +7,16 @@ function Button({
   classNames,
   onClick,
   children,
+  disabled,
 }) {
   const componentClassNames = `btn btn-${color} btn-${size} ${classNames}`;
 
   return (
-    <button className={componentClassNames} onClick={onClick}>
+    <button
+      className={componentClassNames}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

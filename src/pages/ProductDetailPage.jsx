@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
+import Button from '../components/UI/Button';
 
 const ProductDetailPage = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { addToCart, cartItems } = useContext(CartContext);
   const { productId } = useParams();
+
+  const findCartItem = cartItems.find((item) => item.id === product?.id);
 
   useEffect(() => {
     async function fecthProduct() {
@@ -12,10 +17,9 @@ const ProductDetailPage = () => {
         const res = await fetch(
           `https://fakestoreapi.com/products/${productId}`
         );
-        if (res.status === 200) {
-          const data = await res.json();
-          setProduct(data);
-        }
+        const data = await res.json();
+
+        setProduct(data);
       } catch (err) {
         console.log(err);
       }
@@ -49,6 +53,8 @@ const ProductDetailPage = () => {
   }
 
   if (!product) return;
+
+
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
@@ -89,9 +95,12 @@ const ProductDetailPage = () => {
               </span>
             </div>
             {/* Add to Cart Button */}
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+            <Button
+              onClick={() => addToCart({ ...product, quantity: 1 })}
+              disabled={findCartItem}
+            >
               Sepete Ekle
-            </button>
+            </Button>
           </div>
         </div>
       </div>
