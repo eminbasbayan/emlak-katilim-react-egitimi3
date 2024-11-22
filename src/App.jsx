@@ -12,6 +12,7 @@ import MainLayout from './layouts/MainLayout';
 
 import 'react-toastify/dist/ReactToastify.css';
 import Error404 from './pages/Error404';
+import ProductDetailPage from './pages/ProductDetailPage';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -40,6 +41,10 @@ function App() {
         {
           path: '/contact',
           element: <ContactPage />,
+        },
+        {
+          path: '/product-detail/:productId',
+          element: <ProductDetailPage />,
         },
       ],
     },
