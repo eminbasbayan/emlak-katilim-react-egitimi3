@@ -1,8 +1,11 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Header = () => {
   const { cartItems } = useContext(CartContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   console.log('header çalıştı!');
   return (
     <header className="mb-10 sticky top-0">
@@ -14,6 +17,13 @@ const Header = () => {
             </span>
           </a>
           <div className="flex items-center lg:order-2">
+            <a
+              href="#"
+              className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              onClick={toggleTheme}
+            >
+              {theme}
+            </a>
             <a
               href="#"
               className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
