@@ -4,7 +4,10 @@ import { toast } from 'react-toastify';
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-  console.log(cartItems);
+  const total = cartItems.reduce(
+    (toplam, { price, quantity }) => price * quantity + toplam,
+    0
+  );
 
   function addToCart(productItem) {
     const findProduct = cartItems.find((item) => item.id === productItem.id);
@@ -40,6 +43,7 @@ const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         deleteFromCart,
+        total
       }}
     >
       {children}

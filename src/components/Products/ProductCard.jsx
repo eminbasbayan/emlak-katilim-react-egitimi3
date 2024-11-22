@@ -5,7 +5,7 @@ import { CartContext } from '../../context/CartContext';
 
 function ProductCard(props) {
   const { addToCart, deleteFromCart } = useContext(CartContext);
-  const { onDeleteProduct, cart, ...productItem } = props;
+  const { onDeleteProduct, cart, quantity, ...productItem } = props;
 
   function deleteProduct() {
     if (!cart) {
@@ -25,6 +25,7 @@ function ProductCard(props) {
         <span className="product-desc">{productItem.description}</span>
         <div className="flex justify-between">
           <span className="product-price">{productItem.price}₺</span>
+          {cart && <span className="cart-quantity">x {quantity}</span>}
           <b className="product-category text-blue-600">
             {productItem.category}
           </b>
