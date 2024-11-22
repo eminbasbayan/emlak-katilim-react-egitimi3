@@ -13,6 +13,10 @@ function App() {
       path: '/',
       element: <HomePage />,
     },
+    {
+      path: '/products',
+      element: <ProductsPage />,
+    },
   ]);
 
   const appStyle = {
