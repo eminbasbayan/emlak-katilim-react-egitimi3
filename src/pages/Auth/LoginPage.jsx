@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Input from '../../components/Auth/Input';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -69,50 +70,24 @@ const LoginPage = () => {
       <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-4">
           {/* Email Input */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="ornek@email.com"
-              {...register('email')}
-              onBlur={() => trigger('email')}
-            />
-            {errors.email && (
-              <span className="text-red-600">{errors.email.message}</span>
-            )}
-          </div>
+          <Input
+            label="Email"
+            type="email"
+            name="email"
+            register={register}
+            error={errors.email?.message}
+            trigger={trigger}
+          />
 
           {/* Password Input */}
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Şifre
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="••••••••"
-              {...register('password')}
-              onBlur={() => trigger('password')}
-            />
-            {errors.password && (
-              <span className="text-red-600 text-sm">
-                {errors.password.message}
-              </span>
-            )}
-          </div>
+          <Input
+            label="Password"
+            type="password"
+            name="password"
+            register={register}
+            error={errors.password?.message}
+            trigger={trigger}
+          />
         </div>
 
         {/* Remember Me & Forgot Password */}
