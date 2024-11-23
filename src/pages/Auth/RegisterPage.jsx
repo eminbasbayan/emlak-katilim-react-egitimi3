@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from '../../components/Auth/Input';
 import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -14,32 +15,31 @@ const schema = Yup.object().shape({
     .min(6, 'Şifre en az 6 karakter olmalı!'),
 });
 
-const {
-  register,
-  handleSubmit,
-  watch,
-  formState: { errors },
-  trigger,
-} = useForm({
-  resolver: yupResolver(schema),
-});
-
-function onSubmit(data) {
-  const user = {
-    fullName: 'Emin Başbayan',
-    username: 'eminbasbayan',
-    role: 'admin',
-  };
-  dispatch(loginUser(user));
-  toast('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.', {
-    position: 'top-center',
-  });
-  setTimeout(() => {
-    navigate('/');
-  }, 1500);
-}
-
 const RegisterPage = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    trigger,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  function onSubmit(data) {
+    const user = {
+      fullName: 'Emin Başbayan',
+      username: 'eminbasbayan',
+      role: 'admin',
+    };
+    dispatch(loginUser(user));
+    toast('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.', {
+      position: 'top-center',
+    });
+    setTimeout(() => {
+      navigate('/');
+    }, 1500);
+  }
   return (
     <>
       {/* Başlık */}

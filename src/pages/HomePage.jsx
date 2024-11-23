@@ -7,7 +7,11 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <h1 className="text-3xl font-bold">Home Page</h1>
-      <p className='my-4 text-2xl text-green-600'>Hoş geldiniz {user?.fullName}</p>
+      {user && (
+        <p className="my-4 text-2xl text-green-600">
+          Hoş geldiniz {user?.fullName}
+        </p>
+      )}
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet earum
         magnam repellat expedita provident? Placeat sint dolorum adipisci
