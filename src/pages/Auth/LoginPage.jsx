@@ -72,7 +72,7 @@ const LoginPage = () => {
           {/* Email Input */}
           <Input
             label="Email"
-            type="email"
+            type="text"
             name="email"
             register={register}
             error={errors.email?.message}

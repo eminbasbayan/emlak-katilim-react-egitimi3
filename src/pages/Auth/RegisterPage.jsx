@@ -1,3 +1,44 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import Input from '../../components/Auth/Input';
+import { useForm } from 'react-hook-form';
+
+const schema = Yup.object().shape({
+  name: Yup.string()
+    .email('Geçerli bir e-mail giriniz.')
+    .required('Email gerekli.'),
+  email: Yup.string()
+    .email('Geçerli bir e-mail giriniz.')
+    .required('Email gerekli.'),
+  password: Yup.string()
+    .required('Şifre gerekli.')
+    .min(6, 'Şifre en az 6 karakter olmalı!'),
+});
+
+const {
+  register,
+  handleSubmit,
+  watch,
+  formState: { errors },
+  trigger,
+} = useForm({
+  resolver: yupResolver(schema),
+});
+
+function onSubmit(data) {
+  const user = {
+    fullName: 'Emin Başbayan',
+    username: 'eminbasbayan',
+    role: 'admin',
+  };
+  dispatch(loginUser(user));
+  toast('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.', {
+    position: 'top-center',
+  });
+  setTimeout(() => {
+    navigate('/');
+  }, 1500);
+}
+
 const RegisterPage = () => {
   return (
     <>
@@ -16,79 +57,47 @@ const RegisterPage = () => {
       </div>
 
       {/* Form */}
-      <form className="mt-8 space-y-6">
+      <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-4">
           {/* Ad Soyad */}
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Ad Soyad
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="John Doe"
-            />
-          </div>
+          <Input
+            label="Name"
+            type="text"
+            name="name"
+            register={register}
+            error={errors.name?.message}
+            trigger={trigger}
+          />
 
           {/* Email */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="ornek@email.com"
-            />
-          </div>
+          <Input
+            label="Email"
+            type="text"
+            name="email"
+            register={register}
+            error={errors.email?.message}
+            trigger={trigger}
+          />
 
           {/* Şifre */}
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Şifre
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="••••••••"
-            />
-          </div>
+          <Input
+            label="Password"
+            type="password"
+            name="password"
+            register={register}
+            error={errors.password?.message}
+            trigger={trigger}
+          />
 
           {/* Şifre Tekrar */}
-          <div>
-            <label
-              htmlFor="password_confirmation"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Şifre Tekrar
-            </label>
-            <input
-              id="password_confirmation"
-              name="password_confirmation"
-              type="password"
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="••••••••"
-            />
-          </div>
+          <Input
+            label="Password Again"
+            type="password"
+            name="password"
+            register={register}
+            error={errors.passwordConfirm?.message}
+            trigger={trigger}
+          />
         </div>
 
         {/* Kullanım Şartları */}
