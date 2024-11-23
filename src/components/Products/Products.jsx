@@ -1,10 +1,12 @@
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AddProduct from './AddProduct';
 import ProductCard from './ProductCard';
 import Modal from '../UI/Modal';
 import Loading from '../UI/Loading';
 
+import { fetchProducts } from '../../redux/slices/productSlice';
 import useAxios from '../../hooks/useAxios';
 
 import './Products.css';
@@ -34,15 +36,8 @@ const initialState = {
 
 function Products() {
   const [state, dispatch] = useReducer(productReducer, initialState);
-
-  const {
-    data: products,
-    error,
-    loading,
-  } = useAxios({
-    url: 'https://fakestoreapi.com/products',
-    method: 'GET',
-  });
+  const { loading, error, productData } = useSelector((state) => state.product);
+  const reduxDispatch = useDispatch();
 
   function addNewProduct(newProduct) {
     dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
@@ -55,7 +50,13 @@ function Products() {
     dispatch({ type: 'DELETE_PRODUCT', payload: filteredProducts });
   }
 
-  if (loading) return <Loading />;
+  useEffect(() => {
+    if (loading === 'idle') {
+      reduxDispatch(fetchProducts());
+    }
+  }, [loading, reduxDispatch]);
+
+  if (loading === 'loading') return <Loading />;
 
   return (
     <div className="products">
@@ -65,7 +66,7 @@ function Products() {
       />
       <h2 className="text-3xl font-bold mb-4">Products</h2>
       <div className="products-wrapper">
-        {products.map((product) => (
+        {productData.map((product) => (
           <ProductCard
             key={product.id}
             {...product}
