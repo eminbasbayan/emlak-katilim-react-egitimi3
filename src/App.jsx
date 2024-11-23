@@ -14,6 +14,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Error404 from './pages/Error404';
 import ProductDetailPage from './pages/ProductDetailPage';
 import UsersPage from './pages/UsersPage';
+import AuthLayout from './layouts/AuthLayout';
+import LoginPage from './pages/Auth/LoginPage';
+import RegisterPage from './pages/Auth/RegisterPage';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -52,15 +55,27 @@ function App() {
           element: <UsersPage />,
           loader: async () => {
             try {
-              const res = await fetch(
-                'https://fakestoreapi.com/products'
-              );
+              const res = await fetch('https://fakestoreapi.com/products');
               const data = await res.json();
               return data;
             } catch (err) {
               console.log(err);
             }
           },
+        },
+      ],
+    },
+    {
+      path: '/auth',
+      element: <AuthLayout />,
+      children: [
+        {
+          path: 'login',
+          element: <LoginPage />,
+        },
+        {
+          path: 'register',
+          element: <RegisterPage />,
         },
       ],
     },
