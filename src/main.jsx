@@ -7,6 +7,7 @@ import ThemeProvider from './context/ThemeContext';
 import store from './redux/store';
 
 import './index.css';
+import ScrollToTop from './components/ScrollToTop';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ReduxProvider store={store}>

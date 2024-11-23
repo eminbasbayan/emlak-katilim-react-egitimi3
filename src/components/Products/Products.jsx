@@ -6,7 +6,11 @@ import ProductCard from './ProductCard';
 import Modal from '../UI/Modal';
 import Loading from '../UI/Loading';
 
-import { fetchProducts } from '../../redux/slices/productSlice';
+import {
+  addProduct,
+  fetchProducts,
+  removeProduct,
+} from '../../redux/slices/productSlice';
 import useAxios from '../../hooks/useAxios';
 
 import './Products.css';
@@ -40,14 +44,11 @@ function Products() {
   const reduxDispatch = useDispatch();
 
   function addNewProduct(newProduct) {
-    dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
+    reduxDispatch(addProduct(newProduct));
   }
 
   function deleteProduct(productId) {
-    const filteredProducts = state.products.filter(
-      (product) => product.id !== productId
-    );
-    dispatch({ type: 'DELETE_PRODUCT', payload: filteredProducts });
+    reduxDispatch(removeProduct(productId));
   }
 
   useEffect(() => {
