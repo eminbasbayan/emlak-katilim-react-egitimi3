@@ -3,29 +3,30 @@ import { loginUser } from '../../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const { register, handleSubmit, watch } = useForm();
+
+  console.log(watch('email'));
+  console.log(watch('password'));
+
+  function onSubmit(data) {
     const user = {
-      email,
-      password,
       fullName: 'Emin Başbayan',
       username: 'eminbasbayan',
       role: 'admin',
     };
     dispatch(loginUser(user));
-    toast('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.', {
-      position: 'top-center',
-    });
-    setTimeout(() => {
-      navigate('/');
-    }, 1500);
+    // toast('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.', {
+    //   position: 'top-center',
+    // });
+    // setTimeout(() => {
+    //   navigate('/');
+    // }, 1500);
   }
 
   return (
@@ -45,7 +46,7 @@ const LoginPage = () => {
       </div>
 
       {/* Form */}
-      <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-4">
           {/* Email Input */}
           <div>
@@ -62,7 +63,7 @@ const LoginPage = () => {
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               placeholder="ornek@email.com"
-              onChange={(e) => setEmail(e.target.value)}
+              {...register('email')}
             />
           </div>
 
@@ -81,7 +82,7 @@ const LoginPage = () => {
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               placeholder="••••••••"
-              onChange={(e) => setPassword(e.target.value)}
+              {...register('password')}
             />
           </div>
         </div>
