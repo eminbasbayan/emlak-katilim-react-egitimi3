@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from './UI/Button';
+import { arttir, azalt } from '../redux/counterSlice';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const [fullName, setFullName] = useState('');
+  const { count } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log('component ilk yüklendiğinde çalışır!');
@@ -15,18 +17,10 @@ const Counter = () => {
 
   return (
     <div className="counter mb-24">
-      <div className='mb-10'>
-        <h3 className="text-3xl font-bold">{fullName}</h3>
-        <input
-          type="text"
-          className="border"
-          onChange={(e) => setFullName(e.target.value)}
-        />
-      </div>
       <div className=" flex items-center ">
-        <Button onClick={() => setCount(count + 1)}>Arttır</Button>
+        <Button onClick={() => dispatch(arttir())}>Arttır</Button>
         <p className="text-xl font-bold mx-2">{count}</p>
-        <Button onClick={() => setCount(count - 1)} color="danger">
+        <Button onClick={() => dispatch(azalt())} color="danger">
           Azalt
         </Button>
       </div>
