@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import Button from '../components/UI/Button';
 import useAxios from '../hooks/useAxios';
+import Skeleton from '../components/UI/Skeleton';
 
 const ProductDetailPage = () => {
   const { addToCart, cartItems } = useContext(CartContext);
@@ -21,21 +22,46 @@ const ProductDetailPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen w-screen bg-gray-100 flex items-center justify-center p-4">
-        <div className="max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+        <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="md:flex">
-            {/* Skeleton Image */}
+            {/* Sol Taraf - Ürün Görseli Skeleton */}
             <div className="md:w-1/2 p-4">
-              <div className="w-full h-64 bg-gray-300 animate-pulse rounded-lg"></div>
+              <Skeleton className="w-full aspect-square rounded-lg" />
             </div>
-            {/* Skeleton Details */}
+
+            {/* Sağ Taraf - Ürün Detayları Skeleton */}
             <div className="md:w-1/2 p-6 space-y-4">
-              <div className="h-6 bg-gray-300 animate-pulse rounded w-3/4"></div>
-              <div className="h-4 bg-gray-300 animate-pulse rounded w-1/2"></div>
-              <div className="h-4 bg-gray-300 animate-pulse rounded w-full"></div>
-              <div className="h-4 bg-gray-300 animate-pulse rounded w-5/6"></div>
-              <div className="h-6 bg-gray-300 animate-pulse rounded w-1/3"></div>
-              <div className="h-10 bg-blue-300 animate-pulse rounded w-1/2"></div>
+              {/* Başlık */}
+              <Skeleton className="h-8 w-3/4" />
+
+              {/* Kategori */}
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-4 w-16" />
+                <Skeleton className="h-4 w-24" />
+              </div>
+
+              {/* Açıklama */}
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-2/3" />
+              </div>
+
+              {/* Fiyat */}
+              <div className="flex items-center gap-2">
+                <Skeleton className="h-6 w-20" />
+                <Skeleton className="h-6 w-24" />
+              </div>
+
+              {/* Rating */}
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-5 w-20" />
+                <Skeleton className="h-5 w-32" />
+              </div>
+
+              {/* Sepete Ekle Butonu */}
+              <Skeleton className="h-10 w-32 mt-6" />
             </div>
           </div>
         </div>
