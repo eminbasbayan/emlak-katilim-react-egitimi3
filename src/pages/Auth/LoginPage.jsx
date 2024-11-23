@@ -4,12 +4,32 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email('Geçerli bir e-mail giriniz.')
+    .required('Email gerekli.'),
+  password: Yup.string()
+    .required('Şifre gerekli.')
+    .min(6, 'Şifre en az 6 karakter olmalı!'),
+});
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+    trigger,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  console.log(errors);
 
   console.log(watch('email'));
   console.log(watch('password'));
@@ -21,12 +41,12 @@ const LoginPage = () => {
       role: 'admin',
     };
     dispatch(loginUser(user));
-    // toast('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.', {
-    //   position: 'top-center',
-    // });
-    // setTimeout(() => {
-    //   navigate('/');
-    // }, 1500);
+    toast('Giriş başarılı! Ana sayfaya yönlendiriliyorsunuz.', {
+      position: 'top-center',
+    });
+    setTimeout(() => {
+      navigate('/');
+    }, 1500);
   }
 
   return (
@@ -60,11 +80,14 @@ const LoginPage = () => {
               id="email"
               name="email"
               type="email"
-              required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               placeholder="ornek@email.com"
               {...register('email')}
+              onBlur={() => trigger('email')}
             />
+            {errors.email && (
+              <span className="text-red-600">{errors.email.message}</span>
+            )}
           </div>
 
           {/* Password Input */}
@@ -79,11 +102,16 @@ const LoginPage = () => {
               id="password"
               name="password"
               type="password"
-              required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               placeholder="••••••••"
               {...register('password')}
+              onBlur={() => trigger('password')}
             />
+            {errors.password && (
+              <span className="text-red-600 text-sm">
+                {errors.password.message}
+              </span>
+            )}
           </div>
         </div>
 
