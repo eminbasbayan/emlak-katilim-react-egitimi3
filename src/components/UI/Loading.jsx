@@ -1,7 +1,6 @@
 import React from 'react';
 
-const Loading = ({ isLoading }) => {
-  if (!isLoading) return;
+const Loading = () => {
   return (
     <div role="status">
       <svg

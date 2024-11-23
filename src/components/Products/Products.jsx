@@ -1,9 +1,11 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useReducer } from 'react';
 
 import AddProduct from './AddProduct';
 import ProductCard from './ProductCard';
 import Modal from '../UI/Modal';
 import Loading from '../UI/Loading';
+
+import useAxios from '../../hooks/useAxios';
 
 import './Products.css';
 
@@ -33,6 +35,15 @@ const initialState = {
 function Products() {
   const [state, dispatch] = useReducer(productReducer, initialState);
 
+  const {
+    data: products,
+    error,
+    loading,
+  } = useAxios({
+    url: 'https://fakestoreapi.com/products',
+    method: 'GET',
+  });
+
   function addNewProduct(newProduct) {
     dispatch({ type: 'ADD_PRODUCT', payload: newProduct });
   }
@@ -44,21 +55,7 @@ function Products() {
     dispatch({ type: 'DELETE_PRODUCT', payload: filteredProducts });
   }
 
-  async function fetchProducts() {
-    try {
-      const res = await fetch('https://fakestoreapi.com/products');
-      if (res.status === 200) {
-        const data = await res.json();
-        dispatch({ type: 'SET_PRODUCTS', payload: data });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  if (loading) return <Loading />;
 
   return (
     <div className="products">
@@ -68,8 +65,7 @@ function Products() {
       />
       <h2 className="text-3xl font-bold mb-4">Products</h2>
       <div className="products-wrapper">
-        <Loading isLoading={state.isLoading} />
-        {state.products.map((product) => (
+        {products.map((product) => (
           <ProductCard
             key={product.id}
             {...product}

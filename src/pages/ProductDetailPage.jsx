@@ -2,31 +2,22 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import Button from '../components/UI/Button';
+import useAxios from '../hooks/useAxios';
 
 const ProductDetailPage = () => {
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
   const { addToCart, cartItems } = useContext(CartContext);
   const { productId } = useParams();
 
+  const {
+    data: product,
+    error,
+    loading,
+  } = useAxios({
+    url: `https://fakestoreapi.com/products/${productId}`,
+    method: 'GET',
+  });
+
   const findCartItem = cartItems.find((item) => item.id === product?.id);
-
-  useEffect(() => {
-    async function fecthProduct() {
-      try {
-        const res = await fetch(
-          `https://fakestoreapi.com/products/${productId}`
-        );
-        const data = await res.json();
-
-        setProduct(data);
-      } catch (err) {
-        console.log(err);
-      }
-      setLoading(false);
-    }
-    fecthProduct();
-  }, []);
 
   if (loading) {
     return (
@@ -53,8 +44,6 @@ const ProductDetailPage = () => {
   }
 
   if (!product) return;
-
-
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
